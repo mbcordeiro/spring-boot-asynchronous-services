@@ -20,7 +20,7 @@ public class AsyncController {
     @Autowired
     AsyncService service;
 
-    @GetMapping("async")
+    @GetMapping("/async")
     public void getAsync() throws InterruptedException, ExecutionException {
         LOG.info("get Async start");
 
