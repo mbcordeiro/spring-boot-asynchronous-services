@@ -6,6 +6,7 @@ import com.matheuscordeiro.carsasyncservices.api.services.interfaces.CarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,6 +58,7 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    @Async
     @Override
     public CompletableFuture<List<Car>> getAllCars() {
         LOGGER.info("Request to get a list of cars");
