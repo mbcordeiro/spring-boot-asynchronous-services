@@ -38,7 +38,7 @@ public class CarController {
 
     @GetMapping(consumes={MediaType.MULTIPART_FORM_DATA_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody CompletableFuture<ResponseEntity> getAllCars() {
+    public @ResponseBody CompletableFuture<ResponseEntity> getAllCars() throws InterruptedException {
         return carService.getAllCars().<ResponseEntity>thenApply(ResponseEntity::ok)
                 .exceptionally(handleGetCarFailure);
     }

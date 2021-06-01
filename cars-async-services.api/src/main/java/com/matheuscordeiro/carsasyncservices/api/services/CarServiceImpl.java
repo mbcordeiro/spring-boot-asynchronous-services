@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 
+import javax.swing.table.TableRowSorter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,8 +23,9 @@ public class CarServiceImpl implements CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Async
     @Override
-    public CompletableFuture<List<Car>> saveCars(InputStream inputStream) throws IOException {
+    public CompletableFuture<List<Car>> saveCars(InputStream inputStream) throws IOException, InterruptedException {
         final long start = System.currentTimeMillis();
 
         List<Car> cars = parseCSVFile(inputStream);
@@ -31,6 +33,8 @@ public class CarServiceImpl implements CarService {
         LOGGER.info("Saving a list of cars of size {} records", cars.size());
 
         cars = carRepository.saveAll(cars);
+
+        Thread.sleep(1000);
 
         LOGGER.info("Elapsed time: {}", (System.currentTimeMillis() - start));
         return CompletableFuture.completedFuture(cars);
@@ -60,10 +64,13 @@ public class CarServiceImpl implements CarService {
 
     @Async
     @Override
-    public CompletableFuture<List<Car>> getAllCars() {
+    public CompletableFuture<List<Car>> getAllCars() throws InterruptedException {
         LOGGER.info("Request to get a list of cars");
 
         final List<Car> cars = carRepository.findAll();
+
+        Thread.sleep(1000);
+
         return CompletableFuture.completedFuture(cars);
     }
 }

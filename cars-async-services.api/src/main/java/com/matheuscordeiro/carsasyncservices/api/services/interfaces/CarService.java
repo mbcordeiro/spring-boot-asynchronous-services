@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public interface CarService {
-    CompletableFuture<List<Car>> saveCars(final InputStream inputStream) throws IOException;
+    CompletableFuture<List<Car>> saveCars(final InputStream inputStream) throws IOException, InterruptedException;
 
     List<Car> parseCSVFile(final InputStream inputStream) throws Exception;
 
-    CompletableFuture<List<Car>> getAllCars();
+    CompletableFuture<List<Car>> getAllCars() throws InterruptedException;
 }
