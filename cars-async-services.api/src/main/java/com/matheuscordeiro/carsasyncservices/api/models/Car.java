@@ -1,8 +1,10 @@
 package com.matheuscordeiro.carsasyncservices.api.models;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,8 @@ import java.io.Serializable;
 @Entity
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
 
