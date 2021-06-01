@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class CarServiceImpl implements CarService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CarServiceImpl.class);
-    
+
     @Override
     public CompletableFuture<List<Car>> saveCars(InputStream inputStream) {
         return null;
